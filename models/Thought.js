@@ -4,13 +4,13 @@ const dateFormat = require('../utils/dateFormat');
 const ReactionSchema = new Schema(
   {
     reactionId: {
-      type: Schema.Types.ObjectId, //Use Mongoose's ObjectId data type
-      default: () => new Types.ObjectId //Default value is set to a new ObjectId
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId
     },
     reactionBody: {
       type: String,
       required: true,
-      //280 character maximum
+      maxlength: 280
     },
     username: {
       type: String,
@@ -34,7 +34,8 @@ const ThoughtSchema = new Schema(
     thougthText: {
       type: String,
       required: true,
-      //Must be between 1 and 280 characters
+      minlength: 1,
+      maxlength: 280
     },
     username : {
       type: String,
