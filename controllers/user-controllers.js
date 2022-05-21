@@ -5,6 +5,12 @@ const userController = {
   getAllUsers(req, res) {
     User.find({})
     .populate({
+      path:'friends',
+      select: '-__v -friends'
+    })
+    .select('-__v')
+    .sort({ _id: -1 })
+    .populate({
       path:'thoughts',
       select: '-__v'
     })
@@ -17,7 +23,7 @@ const userController = {
     });
   },
 
-// get one user by id    WORKS (test populate when thought is fixed)
+// get one user by id WORKS (test populate when thought is fixed)
     getUserById({ params }, res) {
       User.findOne({ _id: params.id })
         .populate({
